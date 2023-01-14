@@ -40,7 +40,7 @@ public class CustomExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<Object> handleMessageNotReadableException(HttpMessageNotReadableException ex){
-        ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, "Formato de requisição inválido!", ex.getLocalizedMessage());
+        ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, "Formato invalido", ex.getLocalizedMessage());
         return new ResponseEntity<>(apiError, apiError.getStatus());
     }
 }

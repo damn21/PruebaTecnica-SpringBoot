@@ -1,9 +1,9 @@
 package com.andres.testspring.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.andres.testspring.dto.PessoaDTO;
-import com.andres.testspring.repository.PessoaRepository;
-import com.andres.testspring.service.PessoaService;
+import com.andres.testspring.dto.HeroeDTO;
+import com.andres.testspring.repository.HeroeRepository;
+import com.andres.testspring.service.HeroeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest // Auto configuração das classes e configurações da aplicação
 @AutoConfigureMockMvc // Auto configura o Spring MockMvc
 @TestInstance(TestInstance.Lifecycle.PER_CLASS) // Cria uma instância por teste
-class PessoaControllerTest {
+class HeroeControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -31,25 +31,25 @@ class PessoaControllerTest {
     private ObjectMapper objectMapper;
 
     @Autowired
-    private PessoaService pessoaService;
+    private HeroeService heroeService;
 
     @Autowired
-    private PessoaRepository pessoaRepository;
+    private HeroeRepository heroeRepository;
 
     //  Data fictícia
     private LocalDate localDate = LocalDate.of(2000, 1, 1);
 
     @BeforeEach
     void setup() {
-        pessoaRepository.deleteAll();
+        heroeRepository.deleteAll();
     }
 
     @Test
     void salvar() throws Exception {
-        PessoaDTO pessoaDTO = new PessoaDTO("Teste", "Teste@gmail.com", "11111111111", localDate);
+        HeroeDTO heroeDTO = new HeroeDTO("Teste", "Teste@gmail.com", "11111111111", localDate);
 
         mockMvc.perform(
-                post("/pessoas").contentType("application/json;charset=UTF-8").content(objectMapper.writeValueAsString(pessoaDTO)))
+                post("/pessoas").contentType("application/json;charset=UTF-8").content(objectMapper.writeValueAsString(heroeDTO)))
                 .andDo(print()) // Opcional
                 .andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
@@ -63,10 +63,10 @@ class PessoaControllerTest {
     }
 
     void testarNome(String nome, String respostaEsperada) throws Exception {
-        PessoaDTO pessoaDTO = new PessoaDTO(nome, "Teste@gmail.com", "11111111111", localDate);
+        HeroeDTO heroeDTO = new HeroeDTO(nome, "Teste@gmail.com", "11111111111", localDate);
 
         mockMvc.perform(
-                post("/pessoas").contentType("application/json;charset=UTF-8").content(objectMapper.writeValueAsString(pessoaDTO)))
+                post("/pessoas").contentType("application/json;charset=UTF-8").content(objectMapper.writeValueAsString(heroeDTO)))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.nome").value(respostaEsperada))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
@@ -85,10 +85,10 @@ class PessoaControllerTest {
     }
 
     void testarEmail(String email, String respostaEsperada) throws Exception {
-        PessoaDTO pessoaDTO = new PessoaDTO("aaa", email, "11111111111", localDate);
+        HeroeDTO heroeDTO = new HeroeDTO("aaa", email, "11111111111", localDate);
 
         mockMvc.perform(
-                post("/pessoas").contentType("application/json;charset=UTF-8").content(objectMapper.writeValueAsString(pessoaDTO)))
+                post("/pessoas").contentType("application/json;charset=UTF-8").content(objectMapper.writeValueAsString(heroeDTO)))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.email").value(respostaEsperada))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
@@ -110,10 +110,10 @@ class PessoaControllerTest {
     }
 
     void testarCPF(String cpf, String respostaEsperada) throws Exception {
-        PessoaDTO pessoaDTO = new PessoaDTO("aaa", "Teste@gmail.com", cpf, localDate);
+        HeroeDTO heroeDTO = new HeroeDTO("aaa", "Teste@gmail.com", cpf, localDate);
 
         mockMvc.perform(
-                post("/pessoas").contentType("application/json;charset=UTF-8").content(objectMapper.writeValueAsString(pessoaDTO)))
+                post("/pessoas").contentType("application/json;charset=UTF-8").content(objectMapper.writeValueAsString(heroeDTO)))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.cpf").value(respostaEsperada))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
