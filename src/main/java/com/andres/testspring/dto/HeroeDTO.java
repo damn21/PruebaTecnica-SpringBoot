@@ -1,7 +1,7 @@
 package com.andres.testspring.dto;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.andres.testspring.model.Pessoa;
+import com.andres.testspring.model.Heroe;
 import lombok.Value;
 
 import javax.validation.constraints.*;
@@ -10,7 +10,7 @@ import java.time.LocalDate;
 // Ordem de exibição dos campos
 @JsonPropertyOrder({"nome", "email", "cpf", "dataNascimento"})
 @Value // Objeto imutável
-public class PessoaDTO {
+public class HeroeDTO {
 
     @NotBlank(message = "O nome não pode ser vazio!")
     @Size(min = 3, max = 40, message = "O nome precisa ter entre {min} e {max} caracteres!")
@@ -27,7 +27,7 @@ public class PessoaDTO {
     @Past(message = "A data precisa ser no passado!")
     private LocalDate dataNascimento;
 
-    public Pessoa transformaParaObjeto() {
-        return new Pessoa(nome, email, cpf, dataNascimento);
-    }
+    //public Heroe transformaParaObjeto() {
+      //  return new Heroe(name);
+    //}
 }
