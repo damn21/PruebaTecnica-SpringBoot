@@ -46,7 +46,7 @@ class HeroeControllerTest {
 
     @Test
     void salvar() throws Exception {
-        HeroeDTO heroeDTO = new HeroeDTO("Teste", "Teste@gmail.com", "11111111111", localDate);
+        HeroeDTO heroeDTO = new HeroeDTO("Teste");
 
         mockMvc.perform(
                 post("/pessoas").contentType("application/json;charset=UTF-8").content(objectMapper.writeValueAsString(heroeDTO)))
@@ -63,7 +63,7 @@ class HeroeControllerTest {
     }
 
     void testarNome(String nome, String respostaEsperada) throws Exception {
-        HeroeDTO heroeDTO = new HeroeDTO(nome, "Teste@gmail.com", "11111111111", localDate);
+        HeroeDTO heroeDTO = new HeroeDTO(nome);
 
         mockMvc.perform(
                 post("/pessoas").contentType("application/json;charset=UTF-8").content(objectMapper.writeValueAsString(heroeDTO)))
@@ -85,7 +85,7 @@ class HeroeControllerTest {
     }
 
     void testarEmail(String email, String respostaEsperada) throws Exception {
-        HeroeDTO heroeDTO = new HeroeDTO("aaa", email, "11111111111", localDate);
+        HeroeDTO heroeDTO = new HeroeDTO("aaa");
 
         mockMvc.perform(
                 post("/pessoas").contentType("application/json;charset=UTF-8").content(objectMapper.writeValueAsString(heroeDTO)))
@@ -110,7 +110,7 @@ class HeroeControllerTest {
     }
 
     void testarCPF(String cpf, String respostaEsperada) throws Exception {
-        HeroeDTO heroeDTO = new HeroeDTO("aaa", "Teste@gmail.com", cpf, localDate);
+        HeroeDTO heroeDTO = new HeroeDTO("aaa");
 
         mockMvc.perform(
                 post("/pessoas").contentType("application/json;charset=UTF-8").content(objectMapper.writeValueAsString(heroeDTO)))
