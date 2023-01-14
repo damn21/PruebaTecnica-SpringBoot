@@ -1,7 +1,7 @@
 package com.andres.testspring.dto;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.andres.testspring.model.Pessoa;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Value;
 
 import javax.validation.constraints.*;
