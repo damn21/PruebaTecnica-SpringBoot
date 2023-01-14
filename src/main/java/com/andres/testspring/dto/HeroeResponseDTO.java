@@ -2,14 +2,13 @@ package com.andres.testspring.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.andres.testspring.model.Heroe;
 import lombok.Value;
 
-@JsonPropertyOrder({"id", "nome", "email"})
+@JsonPropertyOrder({"id", "name", "habilidad"})
 @Value
 public class HeroeResponseDTO {
     private Long id;
-    private String nome;
-    private String email;
+    private String name;
+    private String habilidad;
 
 }
