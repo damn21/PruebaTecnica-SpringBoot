@@ -3,7 +3,7 @@ package com.andres.testspring.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.andres.testspring.dto.HeroeDTO;
 import com.andres.testspring.repository.HeroeRepository;
-import com.andres.testspring.service.HeroeService;
+import com.andres.testspring.service.HeroeServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -31,7 +31,7 @@ class HeroeControllerTest {
     private ObjectMapper objectMapper;
 
     @Autowired
-    private HeroeService heroeService;
+    private HeroeServiceImpl heroeServiceImpl;
 
     @Autowired
     private HeroeRepository heroeRepository;

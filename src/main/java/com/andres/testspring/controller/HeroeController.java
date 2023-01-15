@@ -1,51 +1,45 @@
 package com.andres.testspring.controller;
 
 import com.andres.testspring.model.Heroe;
-import com.andres.testspring.repository.HeroeRepository;
-import com.andres.testspring.service.HeroeService;
+import com.andres.testspring.service.HeroeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequestMapping("/heroes")
 @RestController
 public class HeroeController {
 
     @Autowired
-    private HeroeService heroeService;
+    private HeroeServiceImpl heroeServiceImpl;
 
     @PostMapping
     public ResponseEntity heroe(@RequestBody Heroe heroe) {
-        return new ResponseEntity(heroeService.createHeroe(heroe), HttpStatus.CREATED);
+        return new ResponseEntity(heroeServiceImpl.saveHeroe(heroe), HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity<List<Heroe>> heroes() {
-        return new ResponseEntity(heroeService.findAllHeroes(), HttpStatus.OK);
+        return new ResponseEntity(heroeServiceImpl.heroeList(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity getHeroe(@PathVariable("id") Long id){
-        return new ResponseEntity(heroeService.findHeroeById(id), HttpStatus.OK);
+        return new ResponseEntity(heroeServiceImpl.getHeroeById(id), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity updateHeroe(@PathVariable("id") Long id, @RequestBody Heroe heroe){
-        return new ResponseEntity(heroeService.updateHeroe(id,heroe), HttpStatus.OK);
+    public ResponseEntity updateHeroe(@RequestBody Heroe heroe, @PathVariable("id") Long id ){
+        return new ResponseEntity(heroeServiceImpl.updateHeroe(heroe, id), HttpStatus.OK);
     }
 
     @DeleteMapping ("/{id}")
     public ResponseEntity deleteHeroe(@PathVariable("id") Long id){
-        boolean response = heroeService.deleteHeroeById(id);
+        heroeServiceImpl.deleteHeroe(id);
 
-        if (!response){
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
-        }
-
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity("Deleted Successfully", HttpStatus.OK);
     }
 }
