@@ -1,7 +1,7 @@
 package com.andres.testspring.controller;
 
 import com.andres.testspring.model.Heroe;
-import com.andres.testspring.service.HeroeServiceImpl;
+import com.andres.testspring.service.HeroeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.List;
 public class HeroeController {
 
     @Autowired
-    private HeroeServiceImpl heroeServiceImpl;
+    private HeroeService heroeServiceImpl;
 
     @PostMapping
     public ResponseEntity heroe(@RequestBody Heroe heroe) {
