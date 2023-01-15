@@ -9,6 +9,7 @@ import lombok.Value;
 public class HeroeResponseDTO {
     private Long id;
     private String name;
-    private String habilidad;
+    private String fullName;
+    private String powerStats;
 
 }
