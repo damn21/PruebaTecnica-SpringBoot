@@ -1,5 +1,6 @@
 package com.andres.testspring.controller;
 
+import com.andres.testspring.exception.ApiError;
 import com.andres.testspring.model.Heroe;
 import com.andres.testspring.service.HeroeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/heroes")
+@RequestMapping("/api/v1/heroes")
 @RestController
 public class HeroeController {
 
@@ -28,6 +29,7 @@ public class HeroeController {
 
     @GetMapping("/{id}")
     public ResponseEntity getHeroe(@PathVariable("id") Long id){
+
         return new ResponseEntity(heroeServiceImpl.getHeroeById(id), HttpStatus.OK);
     }
 
