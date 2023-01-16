@@ -4,7 +4,6 @@ import com.andres.testspring.model.Heroe;
 import com.andres.testspring.repository.HeroeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +32,11 @@ public class HeroeService implements IHeroeService {
         heroModel.setName(heroe.getName());
         heroModel.setPowerStats(heroe.getPowerStats());
         return heroeRepository.save(heroModel);
+    }
+
+    @Override
+    public List<Heroe> searchHeroeByName(String name) {
+        return heroeRepository.findByNameContainsIgnoreCase(name);
     }
 
     @Override

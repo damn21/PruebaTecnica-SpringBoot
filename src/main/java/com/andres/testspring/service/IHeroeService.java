@@ -10,7 +10,7 @@ public interface IHeroeService {
      List<Heroe> heroeList();
      Optional<Heroe> getHeroeById(Long id);
      Heroe updateHeroe(Heroe heroe, Long id);
-
+     List<Heroe> searchHeroeByName(String name);
      void deleteHeroe(Long id);
 
 }

@@ -1,6 +1,5 @@
 package com.andres.testspring.controller;
 
-import com.andres.testspring.exception.ApiError;
 import com.andres.testspring.model.Heroe;
 import com.andres.testspring.service.HeroeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,6 @@ public class HeroeController {
 
     @GetMapping("/{id}")
     public ResponseEntity getHeroe(@PathVariable("id") Long id){
-
         return new ResponseEntity(heroeServiceImpl.getHeroeById(id), HttpStatus.OK);
     }
 
@@ -38,10 +36,15 @@ public class HeroeController {
         return new ResponseEntity(heroeServiceImpl.updateHeroe(heroe, id), HttpStatus.OK);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity search(@RequestParam String name){
+        return new ResponseEntity<>(heroeServiceImpl.searchHeroeByName(name), HttpStatus.OK);
+    }
+
     @DeleteMapping ("/{id}")
     public ResponseEntity deleteHeroe(@PathVariable("id") Long id){
         heroeServiceImpl.deleteHeroe(id);
-
         return new ResponseEntity("Deleted Successfully", HttpStatus.OK);
     }
+
 }
